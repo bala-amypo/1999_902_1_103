@@ -19,7 +19,13 @@ public class Department{
     public void setName(String Name){
         this.name=name;
     }
-    
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(){
+        this.description=description;
+    }
+    public String get
     public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
         this.id=id;
         this.name=name;
