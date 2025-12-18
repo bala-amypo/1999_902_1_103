@@ -42,7 +42,14 @@ public class Employee{
     public int getMaxWeeklyHours(){
         return maxWeeklyHours;
     }
-    public void setMaxWeeklyHours(){
-        this.maxWeeklyHours=max
+    public void setMaxWeeklyHours(int maxWeeklyHours){
+        this.maxWeeklyHours=maxWeeklyHours;
     }
+    public String getCreatedAt(){
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt=createdAt;
+    }
+    public Employee(Long id,String fullname,String email,String role,String skills,)
 }
