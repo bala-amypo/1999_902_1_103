@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
 public class User{
     private Long id;
     private String name;

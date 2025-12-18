@@ -1,7 +1,8 @@
 package com.example.demo.entity;
 import java.Time.*;
+import jakarta persistence.*;
 public class GeneratedShiftSchedule{
     private Long id;
     private LocalTime endTime;
-    
+    private 
 }
