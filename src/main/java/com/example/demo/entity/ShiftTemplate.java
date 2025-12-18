@@ -15,6 +15,16 @@ public class ShiftTemplate{
         this.id=id;
     }
     public String getTemplateName(){
-        return template
+        return templateName;
     }
+    public void setTemplateName(String templateName){
+        this.templateName=templateName;
+    }
+    public LocalTime getStartTime(){
+        return startTime;
+    }
+    public void setStartTime(LocalTime startTime){
+        this.startTime=startTime;
+    }
+    public LocalTime getEndTime()
 }
