@@ -34,7 +34,7 @@ public class Department{
     public String getCreatedAt(){
         return createdAt;
     }
-    public void setCreatedAt(String ){
+    public void setCreatedAt(LocalDateTime createdAt){
         this.createdAt=createdAt;
     }
     public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
