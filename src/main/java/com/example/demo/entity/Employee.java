@@ -33,8 +33,16 @@ public class Employee{
     public void setRole(String role ){
         this.role=role;
     }
-    public String getSkills(String skills){
+    public String getSkills(){
         return skills;
     }
-    public String 
+    public void setSkills(String skills){
+        this.skills=skills;
+    }
+    public int getMaxWeeklyHours(){
+        return maxWeeklyHours;
+    }
+    public void setMaxWeeklyHours(){
+        this.maxWeeklyHours=max
+    }
 }
