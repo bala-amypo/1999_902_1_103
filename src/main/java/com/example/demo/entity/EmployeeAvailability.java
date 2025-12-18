@@ -6,5 +6,7 @@ public class EmployeeAvailability{
     private LocalDate availableData;
     private Boolean available;
 
-    public int getId()
+    public int getId(){
+        
+    }
 }
