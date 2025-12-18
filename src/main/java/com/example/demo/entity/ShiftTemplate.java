@@ -1,1 +1,4 @@
-paca
+package com.example.demo.entity;
+public class ShiftTemplate{
+    
+}
