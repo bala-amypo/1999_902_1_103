@@ -18,19 +18,19 @@ public class Employee{
     public String getFullName(){
         return fullname;
     }
-    public void setFullName(String FullName){
+    public void setFullName(String fullname){
         this.fullname=fullname;
     }
     public String getEmail(){
         return email;
     }
-    public String setEmail(String Email){
+    public void setEmail(String email){
         this.email=email;
     }
     public String getRole(){
         return role;
     }
-    public void setRole(){
+    public void setRole(String role ){
         this.role=role;
     }
     public 
