@@ -16,7 +16,11 @@ public class Department{
     public String getName(){
         return name;
     }
-    public Department(){
-        
+    public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
+        this.id=id;
+        this.name=name;
+        this.description=description;
+        this.requiredSkills=requiredSkills;
+        this.LocalDateTime
     }
 }
