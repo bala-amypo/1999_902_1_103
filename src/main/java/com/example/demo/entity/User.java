@@ -37,5 +37,8 @@ public class User{
     public void setRole(String role){
         this.role=role;
     }
-    public 
+    public User(Long id,String name,String email,String password,String role){
+        this.id=id;
+        this.name
+    }
 }
