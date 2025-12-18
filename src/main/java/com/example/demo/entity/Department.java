@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
 import jakatra.persistence.*;
+
+@Entity
 public class Department{
     private Long id;
     private String name;
