@@ -16,4 +16,7 @@ public class Department{
     public String getName(){
         return name;
     }
+    public Department(){
+        
+    }
 }
