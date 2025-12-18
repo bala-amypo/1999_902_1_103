@@ -8,4 +8,11 @@ public class User{
     private String skills;
     private Integer maxWeeklyHours;
     private LocalDateTime createdAt;
+
+    public int getId(){
+        return id;
+    }
+    public void setId(Long id){
+        
+    }
 }
