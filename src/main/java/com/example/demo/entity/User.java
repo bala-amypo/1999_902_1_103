@@ -27,5 +27,17 @@ public class User{
     public void setEmail(String email){
         this.email=email;
     }
+    public String getRole(){
+        return role;
+    }
+    public void setRole(String role){
+        this.role=role;
+    }
+    public String getSkills(){
+        return skills;
+    }
+    public void setSkills(String skills){
+        this.skills=skills;
+    }
     public 
 }
