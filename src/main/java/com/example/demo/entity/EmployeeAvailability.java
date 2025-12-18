@@ -7,6 +7,13 @@ public class EmployeeAvailability{
     private Boolean available;
 
     public int getId(){
-         
+         return id;
     }
+    public void setId(int id){
+        this.id=id;
+    }
+    public LocalDate getAvailableData(){
+        return availableData;
+    }
+    public void setAvailableData()
 }
