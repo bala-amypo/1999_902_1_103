@@ -12,17 +12,26 @@ public class Employee{
     public int getId(){
         return id;
     }
-    public void setId(){
+    public void setId(Long id){
         this.id=id;
     }
     public String getFullName(){
         return fullname;
     }
-    public void setFullName(){
+    public void setFullName(String FullName){
         this.fullname=fullname;
     }
     public String getEmail(){
         return email;
     }
-    p
+    public String setEmail(String Email){
+        this.email=email;
+    }
+    public String getRole(){
+        return role;
+    }
+    public void setRole(){
+        this.role=role;
+    }
+    public 
 }
