@@ -15,5 +15,14 @@ public class EmployeeAvailability{
     public LocalDate getAvailableData(){
         return availableData;
     }
-    public void setAvailableData()
+    public void setAvailableData(LocalDate availableData){
+        this.availableData=availableData;
+    }
+    public Boolean getAvailable(){
+        return available;
+    }
+    public void setAvailable(Boolean available){
+        this.available=available;
+    }
+    public EmployeeAvailability(Long id,Local)
 }
