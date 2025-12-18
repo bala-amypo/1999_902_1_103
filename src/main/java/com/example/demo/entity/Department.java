@@ -25,7 +25,16 @@ public class Department{
     public void setDescription(){
         this.description=description;
     }
-    public String get
+    public String getRequiredSkills(){
+        return requiredSkills;
+    }
+    public void setRequiredSkills(){
+        this.requiredSkills=requiredSkills;
+    }
+    public String getCreatedAt(){
+        return CreatedAt;
+    }
+    public void set
     public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
         this.id=id;
         this.name=name;
