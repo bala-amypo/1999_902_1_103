@@ -26,5 +26,17 @@ public class ShiftTemplate{
     public void setStartTime(LocalTime startTime){
         this.startTime=startTime;
     }
-    public LocalTime getEndTime()
+    public LocalTime getEndTime(){
+        return endTime;
+    }
+    public void setEndTime(LocalTime endTime){
+        this.endTime=endTime;
+    }
+    public String getRequiredSkills(){
+        return requiredSkills;
+    }
+    public void setRequiredSkills(String requiredSkills){
+        this.requiredSkills=requiredSkills;
+    }
+    public ShiftTemplate(Long id,String )
 }
