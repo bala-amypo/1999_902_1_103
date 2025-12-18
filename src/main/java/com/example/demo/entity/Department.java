@@ -32,10 +32,10 @@ public class Department{
         this.requiredSkills=requiredSkills;
     }
     public String getCreatedAt(){
-        return CreatedAt;
+        return createdAt;
     }
     public void setCreatedAt(){
-        this.CreatedAt=CreatedAt;
+        this.createdAt=createdAt;
     }
     public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
         this.id=id;
