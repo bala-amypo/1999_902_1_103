@@ -1,7 +1,11 @@
 package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import 
-public interface ShiftTemplateRepository{
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.ShiftTemplate;
+
+@Repository
+public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate,Integer>{
     
 }
