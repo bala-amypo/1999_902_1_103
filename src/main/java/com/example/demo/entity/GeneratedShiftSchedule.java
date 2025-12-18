@@ -19,5 +19,11 @@ public class GeneratedShiftSchedule{
     public void setShiftData(LocalDate shiftDate){
         this.shiftDate=shiftDate;
     }
-    public 
+    public LocalTime getStartTime(){
+        return startTime;
+    }
+    public void setStartTime(LocalTime startTime){
+        this.startTime=startTime;
+    }
+    
 }
