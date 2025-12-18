@@ -33,5 +33,8 @@ public class Employee{
     public void setRole(String role ){
         this.role=role;
     }
-    public String setSkills(String )
+    public String getSkills(String skills){
+        return skills;
+    }
+    public String 
 }
