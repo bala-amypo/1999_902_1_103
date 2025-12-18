@@ -7,6 +7,6 @@ public class EmployeeAvailability{
     private Boolean available;
 
     public int getId(){
-        
+         
     }
 }
