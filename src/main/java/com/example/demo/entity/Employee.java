@@ -51,5 +51,15 @@ public class Employee{
     public void setCreatedAt(LocalDateTime createdAt){
         this.createdAt=createdAt;
     }
-    public Employee(Long id,String fullname,String email,String role,String skills,)
+    public Employee(Long id,String fullname,String email,String role,String skills,int maxWeeklyHours,LocalDateTime createdAt){
+        this.id=id;
+        this.fullname=fullname;
+        this.email=email;
+        this.role=role;
+        this.skills=skills;
+        this.maxWeeklyHours=maxWeeklyHours;
+        this.createdAt=createdAt;
+    }
+    public Employee(){
+    }
 }
