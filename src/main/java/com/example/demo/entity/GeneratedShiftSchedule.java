@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import java.Time.*;
 import jakarta persistence.*;
+
+@Entity
 public class GeneratedShiftSchedule{
     private Long id;
     private LocalDate shiftDate;
@@ -38,6 +40,6 @@ public class GeneratedShiftSchedule{
         this.endTime=endTime;
     }
     public GeneratedShiftSchedule(){
-        
+
     }
 }

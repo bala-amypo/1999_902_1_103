@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import java.Time.*;
 import jakarta.persistence.*;
+
+@Entity
 public class ShiftTemplate{
     private Long id;
     private String templateName;
@@ -38,5 +40,14 @@ public class ShiftTemplate{
     public void setRequiredSkills(String requiredSkills){
         this.requiredSkills=requiredSkills;
     }
-    public ShiftTemplate(Long id,String )
+    public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills){
+        this.id=id;
+        this.templateName=templateName;
+        this.startTime=startTime;
+        this.endTime=endTime;
+        this.requiredSkills=requiredSkills
+    }
+    public ShiftTemplate(){
+
+    }
 }
