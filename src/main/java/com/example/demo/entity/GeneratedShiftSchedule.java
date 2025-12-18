@@ -3,6 +3,10 @@ import java.Time.*;
 import jakarta persistence.*;
 public class GeneratedShiftSchedule{
     private Long id;
+    private LocalTime startTime;
     private LocalTime endTime;
-    private 
+
+    public int getId(){
+        r
+    }
 }
