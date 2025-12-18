@@ -7,5 +7,13 @@ public class Department{
     private String requiredSkills;
     private LocalDateTime createdAt;
 
-    public int getId()
+    public int getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public String getName(){
+        return name;
+    }
 }
