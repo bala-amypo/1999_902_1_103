@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
+import jakatra.persistence.*;
 public class Employee{
     private Long id;
     private String fullname;
