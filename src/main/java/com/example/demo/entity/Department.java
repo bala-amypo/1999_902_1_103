@@ -17,8 +17,9 @@ public class Department{
         return name;
     }
     public void setName(String Name){
-        
+        this.name=name;
     }
+    
     public Department(Long id,String name,String description,String requiredSkills,LocalDateTime createdAt){
         this.id=id;
         this.name=name;
