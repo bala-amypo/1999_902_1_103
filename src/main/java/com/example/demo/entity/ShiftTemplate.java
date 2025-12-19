@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class ShiftTemplate{
+    @ManyToOne
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
