@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 public class EmployeeAvailability{
+     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private LocalDate availableData;
     private Boolean available;
