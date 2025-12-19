@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 public class GeneratedShiftSchedule{
+     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private LocalDate shiftDate;
     private LocalTime startTime;

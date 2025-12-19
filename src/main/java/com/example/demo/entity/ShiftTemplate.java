@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 public class ShiftTemplate{
+     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String templateName;
     private LocalTime startTime;
