@@ -12,6 +12,7 @@ public class ShiftTemplate{
     private LocalTime startTime;
     private LocalTime endTime;
     private String requiredSkills;
+    private String department;
 
     public Long getId(){
         return id;
@@ -42,6 +43,9 @@ public class ShiftTemplate{
     }
     public void setRequiredSkills(String requiredSkills){
         this.requiredSkills=requiredSkills;
+    }
+    public String getDepartment(){
+        re
     }
     public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills){
         this.id=id;
