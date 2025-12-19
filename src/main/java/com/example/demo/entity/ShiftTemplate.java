@@ -45,7 +45,10 @@ public class ShiftTemplate{
         this.requiredSkills=requiredSkills;
     }
     public String getDepartment(){
-        re
+        return department;
+    }
+    public void setDepartment(String department){
+        this.department=department;
     }
     public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills){
         this.id=id;
