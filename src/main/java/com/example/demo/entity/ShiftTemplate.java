@@ -45,7 +45,7 @@ public class ShiftTemplate{
         this.templateName=templateName;
         this.startTime=startTime;
         this.endTime=endTime;
-        this.requiredSkills=requiredSkills
+        this.requiredSkills=requiredSkills;
     }
     public ShiftTemplate(){
 
