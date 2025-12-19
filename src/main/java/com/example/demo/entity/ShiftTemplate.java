@@ -50,12 +50,13 @@ public class ShiftTemplate{
     public void setDepartment(String department){
         this.department=department;
     }
-    public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills){
+    public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills,String department){
         this.id=id;
         this.templateName=templateName;
         this.startTime=startTime;
         this.endTime=endTime;
         this.requiredSkills=requiredSkills;
+        this.department=department
     }
     public ShiftTemplate(){
 
