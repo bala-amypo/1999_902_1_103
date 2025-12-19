@@ -10,7 +10,7 @@ public class Department{
     private String requiredSkills;
     private LocalDateTime createdAt;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){

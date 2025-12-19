@@ -1,5 +1,5 @@
 package com.example.demo.entity;
-import java.Time.*;
+import java.time.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,7 +10,7 @@ public class ShiftTemplate{
     private LocalTime endTime;
     private String requiredSkills;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){

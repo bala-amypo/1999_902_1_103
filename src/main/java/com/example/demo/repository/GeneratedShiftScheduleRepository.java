@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.GeneratedShiftScheduler;
 
 @Repository
-public interface GeberatedShiftScheduleRepository extends JpaRepository<GeneratedShiftScheduler,Integer>{
+public interface GeneratedShiftScheduleRepository extends JpaRepository<GeneratedShiftScheduler,Integer>{
     
 }

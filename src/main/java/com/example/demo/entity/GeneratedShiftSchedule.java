@@ -1,5 +1,5 @@
 package com.example.demo.entity;
-import java.Time.*;
+import java.time.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,7 +9,7 @@ public class GeneratedShiftSchedule{
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){

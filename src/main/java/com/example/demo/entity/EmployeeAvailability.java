@@ -1,5 +1,5 @@
 package com.example.demo.entity;
-import java.Time.*;
+import java.time.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +8,7 @@ public class EmployeeAvailability{
     private LocalDate availableData;
     private Boolean available;
 
-    public int getId(){
+    public Long getId(){
          return id;
     }
     public void setId(int id){

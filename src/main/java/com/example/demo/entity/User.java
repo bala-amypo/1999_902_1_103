@@ -10,7 +10,7 @@ public class User{
     private String password;
     private String role;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){
