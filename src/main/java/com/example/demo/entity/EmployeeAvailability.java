@@ -26,7 +26,7 @@ public class EmployeeAvailability{
     public void setAvailable(Boolean available){
         this.available=available;
     }
-    public EmployeeAvailability(Long id,Local availableData,Boolean available){
+    public EmployeeAvailability(Long id,LocalDate availableData,Boolean available){
         this.id=id;
         this.availableData=availableData;
         this.available=available;

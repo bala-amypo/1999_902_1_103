@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
-import jakatra.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Department{
@@ -34,7 +34,7 @@ public class Department{
     public void setRequiredSkills(String requiredSkills){
         this.requiredSkills=requiredSkills;
     }
-    public String getCreatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public void setCreatedAt(LocalDateTime createdAt){

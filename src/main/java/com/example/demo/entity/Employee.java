@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
-import jakatra.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee{
