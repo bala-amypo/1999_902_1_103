@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 
 @Entity
 public class EmployeeAvailability{
-     @Id
+    @ManyToOneEmployee
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    private String employee;
     private LocalDate availableData;
     private Boolean available;
 
@@ -16,6 +18,10 @@ public class EmployeeAvailability{
     public void setId(Long id){
         this.id=id;
     }
+    public String getEmployee(){
+        return employee;
+    }
+    
     public LocalDate getAvailableData(){
         return availableData;
     }
