@@ -33,7 +33,7 @@ public class GeneratedShiftSchedule{
     public void setEndTime(LocalTime endTime){
         this.endTime=endTime;
     }
-    public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalDate endTime){
+    public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime){
         this.id=id;
         this.shiftDate=shiftDate;
         this.startTime=startTime;

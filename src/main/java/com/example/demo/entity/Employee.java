@@ -48,7 +48,7 @@ public class Employee{
     public void setMaxWeeklyHours(int maxWeeklyHours){
         this.maxWeeklyHours=maxWeeklyHours;
     }
-    public String getCreatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public void setCreatedAt(LocalDateTime createdAt){
