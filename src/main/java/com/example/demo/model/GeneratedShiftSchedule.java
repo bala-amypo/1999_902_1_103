@@ -39,7 +39,19 @@ public class GeneratedShiftSchedule{
     public void setEndTime(LocalTime endTime){
         this.endTime=endTime;
     }
-    public Department getDepartment(
+    public Department getDepartment(){
+        return department;
+    }
+    public void setDepartment(Department department){
+        this.department=department;
+    }
+    public Employee getEmployee(){
+        return employee;
+    }
+    public void setEmployee(Employee employee){
+        th
+    }
+
     public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime){
         this.id=id;
         this.shiftDate=shiftDate;
