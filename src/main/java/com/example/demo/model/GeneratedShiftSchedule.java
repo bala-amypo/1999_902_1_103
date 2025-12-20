@@ -49,8 +49,15 @@ public class GeneratedShiftSchedule{
         return employee;
     }
     public void setEmployee(Employee employee){
-        th
+        this.employee=employee;
     }
+    public ShiftTemplate getShiftTemplate(){
+        return shiftTemplate;
+    }
+    public void setShiftTemplate(ShiftTemplate shiftTemplate){
+        this.shiftTemplate=shiftTemplate;
+    }
+
 
     public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime){
         this.id=id;
