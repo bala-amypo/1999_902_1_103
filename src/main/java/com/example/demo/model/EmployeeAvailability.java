@@ -24,8 +24,8 @@ public class EmployeeAvailability{
         return employee;
     }
     public void setEmployee(Employee employee){
-        this.
-    
+        this.employee=employee;
+    }
     public LocalDate getAvailableData(){
         return availableData;
     }
