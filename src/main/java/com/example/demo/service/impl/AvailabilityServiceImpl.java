@@ -1,4 +1,4 @@
 package com.example.demo.service.impl;
-public interface AvailabilityServiceImpl{
+public class AvailabilityServiceImpl implements AvailabilityService{
     
 }

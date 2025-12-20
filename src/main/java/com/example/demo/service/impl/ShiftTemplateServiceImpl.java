@@ -1,4 +1,4 @@
 package com.example.demo.service.impl;
-public interface ShiftTemplateServiceImpl{
+public class ShiftTemplateServiceImpl implements ShiftTemplateService{
     
 }
