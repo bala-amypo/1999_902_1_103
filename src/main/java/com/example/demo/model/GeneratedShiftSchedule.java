@@ -14,6 +14,9 @@ public class GeneratedShiftSchedule{
     @JoinColumn(name="department_id")
     @JoinColumn(name="employee_id")
     @JoinColumn(name="shiftTemplate_id")
+    private Department department;
+    private Employee employee;
+    private ShiftTemplate shiftTemplate;
 
     public Long getId(){
         return id;
