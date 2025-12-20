@@ -8,7 +8,9 @@ public class EmployeeAvailability{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String employee;
+    @ManyToOne
+    @JoinColumn(name="employee_id")
+    private Employee employee;
     private LocalDate availableData;
     private Boolean available;
 
@@ -18,9 +20,11 @@ public class EmployeeAvailability{
     public void setId(Long id){
         this.id=id;
     }
-    public String getEmployee(){
+    public Employee getEmployee(){
         return employee;
     }
+    public void setEmployee(Employee employee){
+        this.
     
     public LocalDate getAvailableData(){
         return availableData;
