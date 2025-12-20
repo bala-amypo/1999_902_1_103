@@ -10,6 +10,10 @@ public class GeneratedShiftSchedule{
     private LocalDate shiftDate;
     private LocalTime startTime;
     private LocalTime endTime;
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    @JoinColumn(name="employee_id")
+    @JoinColumn(name="shiftTemplate_id")
 
     public Long getId(){
         return id;
@@ -35,6 +39,7 @@ public class GeneratedShiftSchedule{
     public void setEndTime(LocalTime endTime){
         this.endTime=endTime;
     }
+    public Department getDepartment(
     public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime){
         this.id=id;
         this.shiftDate=shiftDate;
