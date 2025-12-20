@@ -59,11 +59,14 @@ public class GeneratedShiftSchedule{
     }
 
 
-    public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime){
+    public GeneratedShiftSchedule(Long id,LocalDate shiftDate,LocalTime startTime,LocalTime endTime,Department department,Employee employee,ShiftTemplate shiftTemplate){
         this.id=id;
         this.shiftDate=shiftDate;
         this.startTime=startTime;
         this.endTime=endTime;
+        this.department=department;
+        this.employee=employee;
+        this.shiftTemplate=shiftTemplate;
     }
     public GeneratedShiftSchedule(){
 
