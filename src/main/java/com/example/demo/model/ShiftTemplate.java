@@ -12,6 +12,7 @@ public class ShiftTemplate{
     private LocalTime startTime;
     private LocalTime endTime;
     private String requiredSkills;
+    private Department department
     private String department;
 
     public Long getId(){
