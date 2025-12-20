@@ -12,8 +12,10 @@ public class ShiftTemplate{
     private LocalTime startTime;
     private LocalTime endTime;
     private String requiredSkills;
-    private Department department
-    private String department;
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private Department department;
+    
 
     public Long getId(){
         return id;
@@ -45,10 +47,10 @@ public class ShiftTemplate{
     public void setRequiredSkills(String requiredSkills){
         this.requiredSkills=requiredSkills;
     }
-    public String getDepartment(){
+    public Department getDepartment(){
         return department;
     }
-    public void setDepartment(String department){
+    public void setDepartment(Department department){
         this.department=department;
     }
     public ShiftTemplate(Long id,String templateName,LocalTime startTime,LocalTime endTime,String requiredSkills,String department){
