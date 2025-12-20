@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class EmployeeAvailability{
-    @ManyToOneEmployee
+    //@ManyToOneEmployee
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
