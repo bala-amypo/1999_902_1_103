@@ -3,7 +3,7 @@
     
 // }
 
-package com.example.shiftscheduler.controller;
+package com.example.shiftsche.controller;
 
 import java.util.List;
 
