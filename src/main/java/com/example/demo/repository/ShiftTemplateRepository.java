@@ -1,19 +1,11 @@
-// package com.example.demo.repository;
-
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import org.springframework.stereotype.Repository;
-
-// import com.example.demo.model.ShiftTemplate;
-
-// @Repository
-// public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate,Integer>{
-    
-// }
-
-package com.example.shiftscheduler.repository;
+package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.shiftscheduler.entity.ShiftTemplate;
+import org.springframework.stereotype.Repository;
 
-public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate, Long> {
+import com.example.demo.model.ShiftTemplate;
+
+@Repository
+public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate,Integer>{
+    
 }
