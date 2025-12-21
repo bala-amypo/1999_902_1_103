@@ -11,9 +11,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shiftscheduler.model.ShiftTemplate;
-import com.example.shiftscheduler.repository.ShiftTemplateRepository;
-import com.example.shiftscheduler.service.ShiftTemplateService;
+import com.example.demo.model.ShiftTemplate;
+import com.example.demo.repository.ShiftTemplateRepository;
+import com.example.demo.service.ShiftTemplateService;
 
 @Service
 public class ShiftTemplateServiceImpl implements ShiftTemplateService {

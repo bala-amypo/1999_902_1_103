@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.EmployeeAvailability;
-import com.example.shiftschedulr.repository.AvailabilityRepository;
-import com.example.shiftscheduler.service.AvailabilityService;
+import com.example.demo.repository.AvailabilityRepository;
+import com.example.demo.service.AvailabilityService;
 
 @Service
 public class AvailabilityServiceImpl implements AvailabilityService {

@@ -12,9 +12,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shiftscheduler.model.GeneratedShiftSchedule;
-import com.example.shiftscheduler.repository.ScheduleRepository;
-import com.example.shiftscheduler.service.ScheduleService;
+import com.example.demo.model.GeneratedShiftSchedule;
+import com.example.demo.repository.ScheduleRepository;
+import com.example.demo.service.ScheduleService;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
