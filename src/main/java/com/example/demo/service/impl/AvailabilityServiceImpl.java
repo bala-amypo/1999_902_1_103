@@ -1,9 +1,3 @@
-// package com.example.demo.service.impl;
-// import com.example.demo.service.AvailabilityService;
-// public class AvailabilityServiceImpl implements AvailabilityService{
-    
-// }
-
 package com.example.demo.serviceimpl;
 
 import java.util.List;
@@ -22,8 +16,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     private AvailabilityRepository availabilityRepository;
 
     @Override
-    public EmployeeAvailability addAvailability(
-            EmployeeAvailability availability) {
+    public EmployeeAvailability addAvailability(EmployeeAvailability availability) {
         return availabilityRepository.save(availability);
     }
 
@@ -32,7 +25,9 @@ public class AvailabilityServiceImpl implements AvailabilityService {
         return availabilityRepository.findAll();
     }
 
-    
+    // 🔥 THIS METHOD WAS MISSING
+    @Override
+    public EmployeeAvailability getAvailabilityById(Long id) {
+        return availabilityRepository.findById(id).orElse(null);
+    }
 }
-
-

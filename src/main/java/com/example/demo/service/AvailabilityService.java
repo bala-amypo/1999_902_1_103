@@ -22,5 +22,5 @@ public interface AvailabilityService {
 
     List<EmployeeAvailability> getAllAvailability();
 
-    EmployeeAvailability getAvailabilityById(Long id);
+    EmployeeAvailability getAvailabilityById(Long id); // 👈 THIS
 }
