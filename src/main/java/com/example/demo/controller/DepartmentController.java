@@ -1,39 +1,40 @@
 // 
 
-package com.example.shiftscheduler.serviceimpl;
+package com.example.shiftscheduler.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.shiftscheduler.entity.Department;
-import com.example.shiftscheduler.repository.DepartmentRepository;
 import com.example.shiftscheduler.service.DepartmentService;
 
-@Service
-public class DepartmentServiceImpl implements DepartmentService {
+@RestController
+@RequestMapping("/api/departments")
+public class DepartmentController {
 
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private DepartmentService departmentService;
 
-    @Override
-    public Department addDepartment(Department department) {
-        return departmentRepository.save(department);
+    @PostMapping("/add")
+    public Department addDepartment(@RequestBody Department department) {
+        return departmentService.addDepartment(department);
     }
 
-    @Override
+    @GetMapping("/all")
     public List<Department> getAllDepartments() {
-        return departmentRepository.findAll();
+        return departmentService.getAllDepartments();
     }
 
-    @Override
-    public Department getDepartmentById(Long id) {
-        return departmentRepository.findById(id).orElse(null);
+    @GetMapping("/{id}")
+    public Department getDepartmentById(@PathVariable Long id) {
+        return departmentService.getDepartmentById(id);
     }
 
-    @Override
-    public void deleteDepartment(Long id) {
-        departmentRepository.deleteById(id);
+    @DeleteMapping("/delete/{id}")
+    public String deleteDepartment(@PathVariable Long id) {
+        departmentService.deleteDepartment(id);
+        return "Department deleted successfully";
     }
 }
