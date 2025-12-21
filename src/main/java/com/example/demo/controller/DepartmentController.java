@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.shiftscheduler.entity.Department;
-import com.example.shiftscheduler.service.DepartmentService;
+import com.example.demo.entity.Department;
+import com.example.demo.service.DepartmentService;
 
 @RestController
 @RequestMapping("/api/departments")

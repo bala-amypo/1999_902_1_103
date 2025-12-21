@@ -10,10 +10,10 @@
 //     List<Employee> getAll();
 // }
 
-package com.example.shiftscheduler.service;
+package com.example.demo.service;
 
 import java.util.List;
-import com.example.shiftscheduler.entity.Employee;
+import com.example.demo.entity.Employee;
 
 public interface EmployeeService {
 
