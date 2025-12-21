@@ -11,7 +11,10 @@ public class User{
     private String email;
     private String password;
     private String role;
-private String usernam
+private String username;
+public String getUsername() {
+    return username;
+}
 
 
     public Long getId(){
