@@ -1,11 +1,21 @@
-package com.example.demo.repository;
+// package com.example.demo.repository;
+
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.stereotype.Repository;
+
+// import com.example.demo.model.User;
+
+// @Repository
+// public interface UserRepository extends JpaRepository<User,Integer>{
+    
+// }
+
+package com.example.shiftscheduler.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.example.shiftscheduler.entity.User;
 
-import com.example.demo.model.User;
+public interface UserRepository extends JpaRepository<User, Long> {
 
-@Repository
-public interface UserRepository extends JpaRepository<User,Integer>{
-    
+    User findByUsername(String username);
 }
