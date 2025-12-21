@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.ShiftTemplate;
 
 @Repository
-public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate,Integer>{
+public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate,Long>{
     
 }
