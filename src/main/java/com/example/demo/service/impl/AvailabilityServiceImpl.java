@@ -32,8 +32,5 @@ public class AvailabilityServiceImpl implements AvailabilityService {
         return availabilityRepository.findAll();
     }
 
-    @Override
-    public EmployeeAvailability getAvailabilityById(Long id) {
-        return availabilityRepository.findById(id).orElse(null);
-    }
+    
 }
