@@ -4,9 +4,9 @@
 //     User findByEmail(String email);
 // }
 
-package com.example.shiftscheduler.service;
+package com.example.demo.service;
 
-import com.example.shiftscheduler.entity.User;
+import com.example.demo.entity.User;
 
 public interface UserService {
 

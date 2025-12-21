@@ -11,10 +11,10 @@
 //      List<EmployeeAvailability> getByData(LocalDate date);
 // }
 
-package com.example.shiftscheduler.service;
+package com.example.demo.service;
 
 import java.util.List;
-import com.example.shiftscheduler.entity.EmployeeAvailability;
+import com.example.demo.entity.EmployeeAvailability;
 
 public interface AvailabilityService {
 

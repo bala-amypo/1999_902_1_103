@@ -3,7 +3,7 @@
     
 // }
 
-package com.example.shiftsche.controller;
+package com.example.demo.controller;
 
 import java.util.List;
 
