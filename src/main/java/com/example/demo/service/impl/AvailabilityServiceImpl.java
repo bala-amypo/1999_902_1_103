@@ -24,8 +24,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     public List<EmployeeAvailability> getAllAvailability() {
         return availabilityRepository.findAll();
     }
-
-    // 🔥 THIS METHOD WAS MISSING
+    
     @Override
     public EmployeeAvailability getAvailabilityById(Long id) {
         return availabilityRepository.findById(id).orElse(null);
