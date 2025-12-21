@@ -14,7 +14,7 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.entity.EmployeeAvailability;
+import com.example.demo.model.EmployeeAvailability;
 
 public interface AvailabilityService {
 

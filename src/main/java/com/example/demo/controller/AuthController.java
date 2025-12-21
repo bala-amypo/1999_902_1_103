@@ -8,7 +8,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.shiftscheduler.entity.User;
+import com.example.shiftscheduler.model.User;
 import com.example.shiftscheduler.service.UserService;
 
 @RestController

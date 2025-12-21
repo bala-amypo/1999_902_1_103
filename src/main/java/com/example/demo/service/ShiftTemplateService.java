@@ -7,10 +7,10 @@
 //     List<ShiftTemplate> getByDepartment(Long departmentId);
 // }
 
-package com.example.shiftscheduler.service;
+package com.example.demo.service;
 
 import java.util.List;
-import com.example.shiftscheduler.entity.ShiftTemplate;
+import com.example.demo.model.ShiftTemplate;
 
 public interface ShiftTemplateService {
 

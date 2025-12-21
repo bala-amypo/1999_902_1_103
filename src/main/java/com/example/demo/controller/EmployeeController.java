@@ -10,8 +10,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.shiftscheduler.entity.Employee;
-import com.example.shiftscheduler.service.EmployeeService;
+import com.example.demo.model.Employee;
+import com.example.shiftschedule.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")

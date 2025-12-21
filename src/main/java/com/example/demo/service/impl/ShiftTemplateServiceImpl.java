@@ -4,14 +4,14 @@
     
 // }
 
-package com.example.shiftscheduler.serviceimpl;
+package com.example.demo.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shiftscheduler.entity.ShiftTemplate;
+import com.example.shiftscheduler.model.ShiftTemplate;
 import com.example.shiftscheduler.repository.ShiftTemplateRepository;
 import com.example.shiftscheduler.service.ShiftTemplateService;
 

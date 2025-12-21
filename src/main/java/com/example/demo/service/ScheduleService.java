@@ -7,10 +7,10 @@
 //     List<GeneratedShiftSchedule> getByDate(LocalDate date);
 // }
 
-package com.example.shiftscheduler.service;
+package com.example.demo.service;
 
 import java.util.List;
-import com.example.shiftscheduler.entity.GeneratedShiftSchedule;
+import com.example.demo.model.GeneratedShiftSchedule;
 
 public interface ScheduleService {
 

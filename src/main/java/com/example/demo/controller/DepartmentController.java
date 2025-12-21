@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entity.Department;
+import com.example.demo.model.Department;
 import com.example.demo.service.DepartmentService;
 
 @RestController

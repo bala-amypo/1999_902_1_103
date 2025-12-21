@@ -4,14 +4,14 @@
     
 // }
 
-package com.example.shiftscheduler.serviceimpl;
+package com.example.demo.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shiftscheduler.entity.User;
-import com.example.shiftscheduler.repository.UserRepository;
-import com.example.shiftscheduler.service.UserService;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
