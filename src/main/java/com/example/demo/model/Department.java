@@ -8,7 +8,7 @@ public class Department{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(
+    @Column(unique=true)
     private String name;
     private String description;
     private String requiredSkills;
