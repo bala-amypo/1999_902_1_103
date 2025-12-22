@@ -10,22 +10,29 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    // 404 - Resource Not Found
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleNotFound(
+    public ResponseEntity<Map<String, Object>> handleNotFound(
             ResourceNotFoundException ex,
             HttpServletRequest request) {
 
-        return new ResponseEntity<>(
-                new ApiErrorResponse("NOT_FOUND", ex.getMessage(), request.getRequestURI()),
-                HttpStatus.NOT_FOUND
-        );
+        Map<String, Object> response = new HashMap<>();
+        response.put("errorType", "NOT_FOUND");
+        response.put("message", ex.getMessage());
+        response.put("path", request.getRequestURI());
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    // 400 - Validation Error
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidation(
+    public ResponseEntity<Map<String, Object>> handleValidation(
             MethodArgumentNotValidException ex,
             HttpServletRequest request) {
 
@@ -34,31 +41,39 @@ public class GlobalExceptionHandler {
                 ? fieldError.getField() + " " + fieldError.getDefaultMessage()
                 : "Validation error";
 
-        return new ResponseEntity<>(
-                new ApiErrorResponse("VALIDATION_ERROR", message, request.getRequestURI()),
-                HttpStatus.BAD_REQUEST
-        );
+        Map<String, Object> response = new HashMap<>();
+        response.put("errorType", "VALIDATION_ERROR");
+        response.put("message", message);
+        response.put("path", request.getRequestURI());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    // 400 - Constraint Violation
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ApiErrorResponse> handleConstraint(
+    public ResponseEntity<Map<String, Object>> handleConstraint(
             ConstraintViolationException ex,
             HttpServletRequest request) {
 
-        return new ResponseEntity<>(
-                new ApiErrorResponse("CONSTRAINT_VIOLATION", ex.getMessage(), request.getRequestURI()),
-                HttpStatus.BAD_REQUEST
-        );
+        Map<String, Object> response = new HashMap<>();
+        response.put("errorType", "CONSTRAINT_VIOLATION");
+        response.put("message", ex.getMessage());
+        response.put("path", request.getRequestURI());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    // 500 - Generic Exception
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGeneric(
+    public ResponseEntity<Map<String, Object>> handleGeneric(
             Exception ex,
             HttpServletRequest request) {
 
-        return new ResponseEntity<>(
-                new ApiErrorResponse("INTERNAL_SERVER_ERROR", ex.getMessage(), request.getRequestURI()),
-                HttpStatus.INTERNAL_SERVER_ERROR
-        );
+        Map<String, Object> response = new HashMap<>();
+        response.put("errorType", "INTERNAL_SERVER_ERROR");
+        response.put("message", ex.getMessage());
+        response.put("path", request.getRequestURI());
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
