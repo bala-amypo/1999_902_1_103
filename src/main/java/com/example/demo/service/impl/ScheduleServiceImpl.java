@@ -1,4 +1,4 @@
-package com.example.demo.serviceimpl;
+package com.example.demo.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,30 +33,28 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ShiftTemplateRepository shiftTemplateRepository;
 
     @Override
-    public GeneratedShiftSchedule generateSchedule(
-            LocalDate shiftDate,
-            java.time.LocalTime startTime,
-            java.time.LocalTime endTime,
-            Long departmentId,
-            Long employeeId,
-            Long shiftTemplateId) {
+    public GeneratedShiftSchedule generateSchedule(GeneratedShiftSchedule schedule) {
 
-        Department department = departmentRepository.findById(departmentId)
+        // Set date if not provided
+        if (schedule.getShiftDate() == null) {
+            schedule.setShiftDate(LocalDate.now());
+        }
+
+        // 🔴 FETCH & SET DEPARTMENT
+        Department department = departmentRepository
+                .findById(schedule.getDepartment().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
 
-        Employee employee = employeeRepository.findById(employeeId)
+        // 🔴 FETCH & SET EMPLOYEE
+        Employee employee = employeeRepository
+                .findById(schedule.getEmployee().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
 
-        ShiftTemplate shiftTemplate = shiftTemplateRepository.findById(shiftTemplateId)
+        // 🔴 FETCH & SET SHIFT TEMPLATE
+        ShiftTemplate shiftTemplate = shiftTemplateRepository
+                .findById(schedule.getShiftTemplate().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("ShiftTemplate not found"));
 
-        GeneratedShiftSchedule schedule = new GeneratedShiftSchedule();
-
-        schedule.setShiftDate(shiftDate != null ? shiftDate : LocalDate.now());
-        schedule.setStartTime(startTime);
-        schedule.setEndTime(endTime);
-
-        // 🔴 THESE ARE MANDATORY
         schedule.setDepartment(department);
         schedule.setEmployee(employee);
         schedule.setShiftTemplate(shiftTemplate);
