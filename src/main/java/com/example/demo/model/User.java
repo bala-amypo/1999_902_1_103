@@ -1,5 +1,5 @@
 package com.example.demo.model;
-import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +12,7 @@ public class User{
 
     @Column(unique=true)
     private String email;
-    
+
     private String role;
     private String username;
 
