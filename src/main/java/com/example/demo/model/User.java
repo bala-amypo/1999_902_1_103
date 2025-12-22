@@ -8,15 +8,14 @@ public class User{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String email;
     private String password;
+    private String email;
     private String role;
-private String username;
-public String getUsername() {
-    return username;
-}
+    private String username;
 
-
+    public String getUsername() {
+        return username;
+    }
     public Long getId(){
         return id;
     }
