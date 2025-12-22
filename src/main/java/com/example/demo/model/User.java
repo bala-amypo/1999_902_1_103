@@ -9,9 +9,10 @@ public class User{
     private Long id;
     private String name;
     private String password;
-    
+
     @Column(unique=true)
     private String email;
+    
     private String role;
     private String username;
 
