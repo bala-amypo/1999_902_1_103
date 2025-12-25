@@ -1,75 +1,80 @@
 package com.example.demo.service.impl;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Department;
-import com.example.demo.model.Employee;
-import com.example.demo.model.GeneratedShiftSchedule;
-import com.example.demo.model.ShiftTemplate;
-import com.example.demo.repository.DepartmentRepository;
-import com.example.demo.repository.EmployeeRepository;
-import com.example.demo.repository.ScheduleRepository;
-import com.example.demo.repository.ShiftTemplateRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.ScheduleService;
+import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
+    private final ShiftTemplateRepository shiftTemplateRepository;
+    private final AvailabilityRepository availabilityRepository;
+    private final EmployeeRepository employeeRepository;
+    private final GeneratedShiftScheduleRepository scheduleRepository;
+    private final DepartmentRepository departmentRepository;
 
-    @Autowired
-    private ScheduleRepository scheduleRepository;
-
-    @Autowired
-    private DepartmentRepository departmentRepository;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private ShiftTemplateRepository shiftTemplateRepository;
+    public ScheduleServiceImpl(ShiftTemplateRepository shiftTemplateRepository,
+                              AvailabilityRepository availabilityRepository,
+                              EmployeeRepository employeeRepository,
+                              GeneratedShiftScheduleRepository scheduleRepository,
+                              DepartmentRepository departmentRepository) {
+        this.shiftTemplateRepository = shiftTemplateRepository;
+        this.availabilityRepository = availabilityRepository;
+        this.employeeRepository = employeeRepository;
+        this.scheduleRepository = scheduleRepository;
+        this.departmentRepository = departmentRepository;
+    }
 
     @Override
-    public GeneratedShiftSchedule generateSchedule(GeneratedShiftSchedule schedule) {
+    public List<GeneratedShiftSchedule> generateForDate(LocalDate date) {
+        List<GeneratedShiftSchedule> schedules = new ArrayList<>();
+        List<Department> departments = departmentRepository.findAll();
+        List<EmployeeAvailability> availableEmployees = availabilityRepository.findByAvailableDateAndAvailable(date, true);
 
-        // Set date if not provided
-        if (schedule.getShiftDate() == null) {
-            schedule.setShiftDate(LocalDate.now());
+        for (Department department : departments) {
+            List<ShiftTemplate> shiftTemplates = shiftTemplateRepository.findByDepartment_Id(department.getId());
+            
+            for (ShiftTemplate shiftTemplate : shiftTemplates) {
+                for (EmployeeAvailability availability : availableEmployees) {
+                    Employee employee = availability.getEmployee();
+                    
+                    // Check if employee skills match shift requirements
+                    if (employee.getSkills() != null && shiftTemplate.getRequiredSkills() != null) {
+                        boolean hasMatchingSkill = false;
+                        String[] employeeSkills = employee.getSkills().split(",");
+                        String[] requiredSkills = shiftTemplate.getRequiredSkills().split(",");
+                        
+                        for (String empSkill : employeeSkills) {
+                            for (String reqSkill : requiredSkills) {
+                                if (empSkill.trim().equals(reqSkill.trim())) {
+                                    hasMatchingSkill = true;
+                                    break;
+                                }
+                            }
+                            if (hasMatchingSkill) break;
+                        }
+                        
+                        if (hasMatchingSkill) {
+                            GeneratedShiftSchedule schedule = new GeneratedShiftSchedule(
+                                employee, shiftTemplate, date, 
+                                shiftTemplate.getStartTime(), shiftTemplate.getEndTime()
+                            );
+                            schedules.add(scheduleRepository.save(schedule));
+                            break; // One employee per shift
+                        }
+                    }
+                }
+            }
         }
-
-        // 🔴 FETCH & SET DEPARTMENT
-        Department department = departmentRepository
-                .findById(schedule.getDepartment().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
-
-        // 🔴 FETCH & SET EMPLOYEE
-        Employee employee = employeeRepository
-                .findById(schedule.getEmployee().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
-
-        // 🔴 FETCH & SET SHIFT TEMPLATE
-        ShiftTemplate shiftTemplate = shiftTemplateRepository
-                .findById(schedule.getShiftTemplate().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("ShiftTemplate not found"));
-
-        schedule.setDepartment(department);
-        schedule.setEmployee(employee);
-        schedule.setShiftTemplate(shiftTemplate);
-
-        return scheduleRepository.save(schedule);
+        
+        return schedules;
     }
 
     @Override
-    public List<GeneratedShiftSchedule> getAllSchedules() {
-        return scheduleRepository.findAll();
-    }
-
-    @Override
-    public GeneratedShiftSchedule getScheduleById(Long id) {
-        return scheduleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Schedule not found"));
+    public List<GeneratedShiftSchedule> getByDate(LocalDate date) {
+        return scheduleRepository.findByShiftDate(date);
     }
 }

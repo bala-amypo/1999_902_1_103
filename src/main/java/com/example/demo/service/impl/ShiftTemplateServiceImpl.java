@@ -1,43 +1,43 @@
-// package com.example.demo.service.impl;
-// import com.example.demo.service.ShiftTemplateService;
-// public class ShiftTemplateServiceImpl implements ShiftTemplateService{
-    
-// }
+package com.example.demo.service.impl;
 
-package com.example.demo.serviceimpl;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.demo.model.Department;
 import com.example.demo.model.ShiftTemplate;
+import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.ShiftTemplateRepository;
 import com.example.demo.service.ShiftTemplateService;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ShiftTemplateServiceImpl implements ShiftTemplateService {
+    private final ShiftTemplateRepository shiftTemplateRepository;
+    private final DepartmentRepository departmentRepository;
 
-    @Autowired
-    private ShiftTemplateRepository templateRepository;
-
-    @Override
-    public ShiftTemplate addTemplate(ShiftTemplate template) {
-        return templateRepository.save(template);
+    public ShiftTemplateServiceImpl(ShiftTemplateRepository shiftTemplateRepository, DepartmentRepository departmentRepository) {
+        this.shiftTemplateRepository = shiftTemplateRepository;
+        this.departmentRepository = departmentRepository;
     }
 
     @Override
-    public List<ShiftTemplate> getAllTemplates() {
-        return templateRepository.findAll();
+    public ShiftTemplate create(ShiftTemplate shiftTemplate) {
+        Department department = departmentRepository.findById(shiftTemplate.getDepartment().getId())
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+        
+        if (shiftTemplate.getEndTime().isBefore(shiftTemplate.getStartTime()) || 
+            shiftTemplate.getEndTime().equals(shiftTemplate.getStartTime())) {
+            throw new RuntimeException("End time must be after start time");
+        }
+        
+        if (shiftTemplateRepository.findByTemplateNameAndDepartment_Id(
+                shiftTemplate.getTemplateName(), department.getId()).isPresent()) {
+            throw new RuntimeException("Shift template name must be unique within department");
+        }
+        
+        return shiftTemplateRepository.save(shiftTemplate);
     }
 
     @Override
-    public ShiftTemplate getTemplateById(Long id) {
-        return templateRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void deleteTemplate(Long id) {
-        templateRepository.deleteById(id);
+    public List<ShiftTemplate> getByDepartment(Long departmentId) {
+        return shiftTemplateRepository.findByDepartment_Id(departmentId);
     }
 }
