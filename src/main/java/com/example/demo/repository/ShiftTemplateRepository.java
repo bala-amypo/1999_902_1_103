@@ -12,11 +12,12 @@
 
 package com.example.demo.repository;
 
-import com.example.demo.model.GeneratedShiftSchedule;
+import com.example.demo.model.ShiftTemplate;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-public interface GeneratedShiftScheduleRepository extends JpaRepository<GeneratedShiftSchedule, Long> {
-    List<GeneratedShiftSchedule> findByShiftDate(LocalDate shiftDate);
+public interface ShiftTemplateRepository extends JpaRepository<ShiftTemplate, Long> {
+    Optional<ShiftTemplate> findByTemplateNameAndDepartment_Id(String templateName, Long departmentId);
+    List<ShiftTemplate> findByDepartment_Id(Long departmentId);
 }
