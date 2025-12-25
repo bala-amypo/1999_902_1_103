@@ -45,31 +45,37 @@
 
 package com.example.demo.controller;
 
-import com.example.demo.model.GeneratedShiftSchedule;
-import com.example.demo.service.ScheduleService;
+import com.example.demo.model.Department;
+import com.example.demo.model.ShiftTemplate;
+import com.example.demo.repository.DepartmentRepository;
+import com.example.demo.service.ShiftTemplateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/schedule")
-public class ScheduleController {
-    private final ScheduleService scheduleService;
+@RequestMapping("/api/shift-templates")
+public class ShiftTemplateController {
+    private final ShiftTemplateService shiftTemplateService;
+    private final DepartmentRepository departmentRepository;
 
-    public ScheduleController(ScheduleService scheduleService) {
-        this.scheduleService = scheduleService;
+    public ShiftTemplateController(ShiftTemplateService shiftTemplateService, DepartmentRepository departmentRepository) {
+        this.shiftTemplateService = shiftTemplateService;
+        this.departmentRepository = departmentRepository;
     }
 
-    @PostMapping("/generate/{date}")
-    public ResponseEntity<List<GeneratedShiftSchedule>> generate(@PathVariable String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return ResponseEntity.ok(scheduleService.generateForDate(localDate));
+    @GetMapping
+    public ResponseEntity<List<ShiftTemplate>> list() {
+        List<ShiftTemplate> allTemplates = new ArrayList<>();
+        for (Department dept : departmentRepository.findAll()) {
+            allTemplates.addAll(shiftTemplateService.getByDepartment(dept.getId()));
+        }
+        return ResponseEntity.ok(allTemplates);
     }
 
-    @GetMapping("/date/{date}")
-    public ResponseEntity<List<GeneratedShiftSchedule>> byDate(@PathVariable String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return ResponseEntity.ok(scheduleService.getByDate(localDate));
+    @PostMapping
+    public ResponseEntity<ShiftTemplate> create(@RequestBody ShiftTemplate shiftTemplate) {
+        return ResponseEntity.ok(shiftTemplateService.create(shiftTemplate));
     }
 }
