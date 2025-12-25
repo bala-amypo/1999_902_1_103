@@ -72,39 +72,44 @@
 
 package com.example.demo.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String fullName;
     private String email;
-    private String role;
+    private String role = "STAFF";
     private String skills;
-    private Integer maxHoursPerWeek;
+    private Integer maxWeeklyHours;
+    private LocalDateTime createdAt;
 
     public Employee() {}
 
-    public Employee(String fullName, String email, String role, String skills, Integer maxHoursPerWeek) {
+    public Employee(String fullName, String email, Integer maxWeeklyHours) {
         this.fullName = fullName;
         this.email = email;
-        this.role = role == null ? "STAFF" : role;
-        this.skills = skills;
-        this.maxHoursPerWeek = maxHoursPerWeek;
+        this.maxWeeklyHours = maxWeeklyHours;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
     public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
     public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
     public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
     public String getSkills() { return skills; }
+    public Integer getMaxWeeklyHours() { return maxWeeklyHours; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public void setFullName(String fullName) { this.fullName = fullName; }
+    public void setEmail(String email) { this.email = email; }
+    public void setRole(String role) { this.role = role; }
     public void setSkills(String skills) { this.skills = skills; }
-    public Integer getMaxHoursPerWeek() { return maxHoursPerWeek; }
-    public void setMaxHoursPerWeek(Integer maxHoursPerWeek) { this.maxHoursPerWeek = maxHoursPerWeek; }
+    public void setMaxWeeklyHours(Integer maxWeeklyHours) { this.maxWeeklyHours = maxWeeklyHours; }
 }
