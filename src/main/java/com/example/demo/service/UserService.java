@@ -4,13 +4,13 @@
 //     User findByEmail(String email);
 // }
 
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import com.example.demo.model.User;
+// import com.example.demo.model.User;
 
-public interface UserService {
+// public interface UserService {
 
-    User registerUser(User user);
+//     User registerUser(User user);
 
-    User loginUser(String username, String password);
-}
+//     User loginUser(String username, String password);
+// }

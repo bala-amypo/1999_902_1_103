@@ -12,16 +12,14 @@
 
 package com.example.demo.service;
 
-import java.util.List;
 import com.example.demo.model.Employee;
+import java.util.List;
 
 public interface EmployeeService {
-
-    Employee addEmployee(Employee employee);
-
-    List<Employee> getAllEmployees();
-
-    Employee getEmployeeById(Long id);
-
+    Employee createEmployee(Employee employee);
+    Employee getEmployee(Long id);
+    Employee updateEmployee(Long id, Employee employee);
     void deleteEmployee(Long id);
+    Employee findByEmail(String email);
+    List<Employee> getAll();
 }

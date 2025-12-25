@@ -9,16 +9,10 @@
 
 package com.example.demo.service;
 
-import java.util.List;
 import com.example.demo.model.ShiftTemplate;
+import java.util.List;
 
 public interface ShiftTemplateService {
-
-    ShiftTemplate addTemplate(ShiftTemplate template);
-
-    List<ShiftTemplate> getAllTemplates();
-
-    ShiftTemplate getTemplateById(Long id);
-
-    void deleteTemplate(Long id);
+    ShiftTemplate create(ShiftTemplate shiftTemplate);
+    List<ShiftTemplate> getByDepartment(Long departmentId);
 }
