@@ -78,3 +78,15 @@
 //                 .orElseThrow(() -> new RuntimeException("not found"));
 //     }
 // }
+
+@Override
+public User registerUser(User user) {
+    if (userRepository.existsByEmail(user.getEmail())) {
+        throw new IllegalArgumentException("exists");
+    }
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    if (user.getRole() == null) {
+        user.setRole("ANALYST");
+    }
+    return userRepository.save(user);
+}
