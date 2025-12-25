@@ -86,14 +86,32 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String fullName;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     private String role = "STAFF";
+
+    /**
+     * Comma-separated skills (e.g. "JAVA,SPRING,SQL")
+     */
     private String skills;
+
+    /**
+     * Maximum allowed working hours per week
+     */
+    @Column(nullable = false)
     private Integer maxWeeklyHours;
+
     private LocalDateTime createdAt;
 
-    public Employee() {}
+    // ---------- Constructors ----------
+
+    public Employee() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     public Employee(String fullName, String email, Integer maxWeeklyHours) {
         this.fullName = fullName;
@@ -101,6 +119,8 @@ public class Employee {
         this.maxWeeklyHours = maxWeeklyHours;
         this.createdAt = LocalDateTime.now();
     }
+
+    // ---------- Getters ----------
 
     public Long getId() {
         return id;
@@ -126,14 +146,18 @@ public class Employee {
         return maxWeeklyHours;
     }
 
-    /** REQUIRED by EmployeeServiceImpl */
+    /**
+     * REQUIRED by EmployeeServiceImpl
+     */
     public Integer getMaxHoursPerWeek() {
-        return this.maxWeeklyHours;
+        return maxWeeklyHours;
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    // ---------- Setters ----------
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -153,5 +177,16 @@ public class Employee {
 
     public void setMaxWeeklyHours(Integer maxWeeklyHours) {
         this.maxWeeklyHours = maxWeeklyHours;
+    }
+
+    /**
+     * REQUIRED by EmployeeServiceImpl
+     */
+    public void setMaxHoursPerWeek(Integer hours) {
+        this.maxWeeklyHours = hours;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
