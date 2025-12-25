@@ -1,4 +1,4 @@
-utilpackage com.example.demo.util;
+package com.example.demo.util;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
