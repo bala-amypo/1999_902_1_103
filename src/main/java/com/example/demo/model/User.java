@@ -69,7 +69,10 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(
+        name = "users",
+        uniqueConstraints = @UniqueConstraint(columnNames = "email")
+)
 public class User {
 
     @Id
@@ -77,15 +80,11 @@ public class User {
     private Long id;
 
     private String name;
-
     private String email;
-
     private String password;
-
     private String role = "ANALYST";
 
-    public User() {
-    }
+    public User() {}
 
     public User(String name, String email, String password, String role) {
         this.name = name;
@@ -106,6 +105,11 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    /** REQUIRED by AuthController */
+    public String getUsername() {
+        return this.email;
     }
 
     public String getPassword() {
