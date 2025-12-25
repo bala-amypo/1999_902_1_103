@@ -1,8 +1,20 @@
-// package com.example.demo.service;
-// public interface UserService{
-//     User register(User user);
-//     User findByEmail(String email);
-// }
+// // package com.example.demo.service;
+// // public interface UserService{
+// //     User register(User user);
+// //     User findByEmail(String email);
+// // }
+
+// // package com.example.demo.service;
+
+// // import com.example.demo.model.User;
+
+// // public interface UserService {
+
+// //     User registerUser(User user);
+
+// //     User loginUser(String username, String password);
+// // }
+
 
 // package com.example.demo.service;
 
@@ -10,11 +22,10 @@
 
 // public interface UserService {
 
-//     User registerUser(User user);
+//     User register(User user);
 
-//     User loginUser(String username, String password);
+//     User findByEmail(String email);
 // }
-
 
 package com.example.demo.service;
 
@@ -22,7 +33,8 @@ import com.example.demo.model.User;
 
 public interface UserService {
 
-    User register(User user);
+    User registerUser(User user);
 
     User findByEmail(String email);
 }
+
