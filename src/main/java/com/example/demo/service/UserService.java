@@ -1,43 +1,8 @@
-// // package com.example.demo.service;
-// // public interface UserService{
-// //     User register(User user);
-// //     User findByEmail(String email);
-// // }
-
-// // package com.example.demo.service;
-
-// // import com.example.demo.model.User;
-
-// // public interface UserService {
-
-// //     User registerUser(User user);
-
-// //     User loginUser(String username, String password);
-// // }
-
-
-// package com.example.demo.service;
-
-// import com.example.demo.model.User;
-
-// public interface UserService {
-
-//     User register(User user);
-
-//     User findByEmail(String email);
-// }
-
 package com.example.demo.service;
 
 import com.example.demo.model.User;
 
 public interface UserService {
-
-    User registerUser(User user);
-
-    User loginUser(String email, String password);
-
+    User register(User user);
     User findByEmail(String email);
 }
-
-
