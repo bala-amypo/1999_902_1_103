@@ -1,42 +1,48 @@
-// package com.example.demo.controller;
-// public class AuthController{
-    
-// }
-
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
+import com.example.demo.security.JwtTokenProvider;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
+@Tag(name = "Authentication Endpoints")
 public class AuthController {
-
-    @Autowired
-    private UserService userService;
-
-   
-    @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.registerUser(user);
+    
+    private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final PasswordEncoder passwordEncoder;
+    
+    public AuthController(UserService userService, JwtTokenProvider jwtTokenProvider, 
+                         PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.passwordEncoder = passwordEncoder;
     }
-
-  
+    
+    @PostMapping("/register")
+    @Operation(summary = "Register new user")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        return ResponseEntity.ok(userService.register(user));
+    }
+    
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
-
-        User loggedUser = userService.loginUser(
-                user.getUsername(), 
-                user.getPassword()
-        );
-
-        if (loggedUser != null) {
-            return "Login successful. Role: " + loggedUser.getRole();
-        } else {
-            return "Invalid username or password";
+    @Operation(summary = "Login user")
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        User user = userService.findByEmail(request.getEmail());
+        
+        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            String token = jwtTokenProvider.generateToken(user);
+            return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getRole()));
         }
+        
+        return ResponseEntity.badRequest().build();
     }
 }
