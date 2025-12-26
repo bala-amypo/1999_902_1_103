@@ -1,79 +1,67 @@
-// package com.example.demo.exception;
+package com.example.demo.exception;
 
-// import jakarta.servlet.http.HttpServletRequest;
-// import jakarta.validation.ConstraintViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.validation.FieldError;
-// import org.springframework.web.bind.MethodArgumentNotValidException;
-// import org.springframework.web.bind.annotation.ExceptionHandler;
-// import org.springframework.web.bind.annotation.RestControllerAdvice;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
-// import java.util.HashMap;
-// import java.util.Map;
-
-// @RestControllerAdvice
-// public class GlobalExceptionHandler {
-
-//     // 404 - Resource Not Found
-//     @ExceptionHandler(ResourceNotFoundException.class)
-//     public ResponseEntity<Map<String, Object>> handleNotFound(
-//             ResourceNotFoundException ex,
-//             HttpServletRequest request) {
-
-//         Map<String, Object> response = new HashMap<>();
-//         response.put("errorType", "NOT_FOUND");
-//         response.put("message", ex.getMessage());
-//         response.put("path", request.getRequestURI());
-
-//         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-//     }
-
-//     // 400 - Validation Error
-//     @ExceptionHandler(MethodArgumentNotValidException.class)
-//     public ResponseEntity<Map<String, Object>> handleValidation(
-//             MethodArgumentNotValidException ex,
-//             HttpServletRequest request) {
-
-//         FieldError fieldError = ex.getBindingResult().getFieldError();
-//         String message = fieldError != null
-//                 ? fieldError.getField() + " " + fieldError.getDefaultMessage()
-//                 : "Validation error";
-
-//         Map<String, Object> response = new HashMap<>();
-//         response.put("errorType", "VALIDATION_ERROR");
-//         response.put("message", message);
-//         response.put("path", request.getRequestURI());
-
-//         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-//     }
-
-//     // 400 - Constraint Violation
-//     @ExceptionHandler(ConstraintViolationException.class)
-//     public ResponseEntity<Map<String, Object>> handleConstraint(
-//             ConstraintViolationException ex,
-//             HttpServletRequest request) {
-
-//         Map<String, Object> response = new HashMap<>();
-//         response.put("errorType", "CONSTRAINT_VIOLATION");
-//         response.put("message", ex.getMessage());
-//         response.put("path", request.getRequestURI());
-
-//         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-//     }
-
-//     // 500 - Generic Exception
-//     @ExceptionHandler(Exception.class)
-//     public ResponseEntity<Map<String, Object>> handleGeneric(
-//             Exception ex,
-//             HttpServletRequest request) {
-
-//         Map<String, Object> response = new HashMap<>();
-//         response.put("errorType", "INTERNAL_SERVER_ERROR");
-//         response.put("message", ex.getMessage());
-//         response.put("path", request.getRequestURI());
-
-//         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-//     }
-// }
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(
+            ResourceNotFoundException ex, WebRequest request) {
+        
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", ex.getMessage());
+        errorDetails.put("status", HttpStatus.NOT_FOUND.value());
+        errorDetails.put("error", "Resource Not Found");
+        
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Map<String, Object>> handleValidationException(
+            ValidationException ex, WebRequest request) {
+        
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", ex.getMessage());
+        errorDetails.put("status", HttpStatus.BAD_REQUEST.value());
+        errorDetails.put("error", "Validation Error");
+        
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<Map<String, Object>> handleDuplicateResourceException(
+            DuplicateResourceException ex, WebRequest request) {
+        
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", ex.getMessage());
+        errorDetails.put("status", HttpStatus.CONFLICT.value());
+        errorDetails.put("error", "Duplicate Resource");
+        
+        return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
+    }
+    
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGlobalException(
+            Exception ex, WebRequest request) {
+        
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", "Internal server error occurred");
+        errorDetails.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        errorDetails.put("error", "Internal Server Error");
+        
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
