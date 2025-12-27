@@ -34,15 +34,36 @@ public class AuthController {
     }
     
     @PostMapping("/login")
-    @Operation(summary = "Login user")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
-        User user = userService.findByEmail(request.getEmail());
-        
-        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            String token = jwtTokenProvider.generateToken(user);
-            return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getRole()));
-        }
-        
-        return ResponseEntity.badRequest().build();
+@Operation(summary = "Login user")
+public ResponseEntity<?> login(@RequestBody AuthRequest request) {
+
+    User user = userService.findByEmail(request.getEmail());
+
+    // User not found
+    if (user == null) {
+        return ResponseEntity
+                .status(401)
+                .body(Map.of(
+                        "message", "User not found",
+                        "status", 401
+                ));
     }
+
+    // Password mismatch
+    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        return ResponseEntity
+                .status(401)
+                .body(Map.of(
+                        "message", "Invalid email or password",
+                        "status", 401
+                ));
+    }
+
+    // Success
+    String token = jwtTokenProvider.generateToken(user);
+    return ResponseEntity.ok(
+            new AuthResponse(token, user.getEmail(), user.getRole())
+    );
+}
+
 }
