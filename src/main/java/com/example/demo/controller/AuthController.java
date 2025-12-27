@@ -46,8 +46,8 @@ public ResponseEntity<String> login(@RequestBody AuthRequest request) {
                 .body("Invalid email or password");
     }
 
-    // Password mismatch
-    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    // Plain text password comparison
+    if (!request.getPassword().equals(user.getPassword())) {
         return ResponseEntity
                 .status(401)
                 .body("Invalid email or password");
@@ -57,4 +57,5 @@ public ResponseEntity<String> login(@RequestBody AuthRequest request) {
     String token = jwtTokenProvider.generateToken(user);
     return ResponseEntity.ok(token);
 }
+
 }
