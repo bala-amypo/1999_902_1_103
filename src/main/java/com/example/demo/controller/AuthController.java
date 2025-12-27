@@ -33,37 +33,27 @@ public class AuthController {
         return ResponseEntity.ok(userService.register(user));
     }
     
-    @PostMapping("/login")
+   @PostMapping("/login")
 @Operation(summary = "Login user")
-public ResponseEntity<?> login(@RequestBody AuthRequest request) {
+public ResponseEntity<String> login(@RequestBody AuthRequest request) {
 
     User user = userService.findByEmail(request.getEmail());
 
-    // User not found
     if (user == null) {
         return ResponseEntity
                 .status(401)
-                .body(Map.of(
-                        "message", "User not found",
-                        "status", 401
-                ));
+                .body("User not found");
     }
 
-    // Password mismatch
     if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
         return ResponseEntity
                 .status(401)
-                .body(Map.of(
-                        "message", "Invalid email or password",
-                        "status", 401
-                ));
+                .body("Invalid email or password");
     }
 
-    // Success
     String token = jwtTokenProvider.generateToken(user);
-    return ResponseEntity.ok(
-            new AuthResponse(token, user.getEmail(), user.getRole())
-    );
+    return ResponseEntity.ok(token);
 }
+
 
 }
