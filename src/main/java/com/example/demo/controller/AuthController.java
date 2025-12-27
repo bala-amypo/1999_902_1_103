@@ -44,8 +44,8 @@ public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
                 .body(new AuthResponse(null, "User not found", null));
     }
 
-    // 2️⃣ Check password
-    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    // 2️⃣ Plain text password comparison
+    if (!request.getPassword().equals(user.getPassword())) {
         return ResponseEntity.status(401)
                 .body(new AuthResponse(null, "Invalid password", null));
     }
@@ -57,5 +57,6 @@ public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
             new AuthResponse(token, user.getEmail(), user.getRole())
     );
 }
+
 
 }
