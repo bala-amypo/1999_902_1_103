@@ -39,21 +39,22 @@ public ResponseEntity<String> login(@RequestBody AuthRequest request) {
 
     User user = userService.findByEmail(request.getEmail());
 
+    // User not found
     if (user == null) {
         return ResponseEntity
                 .status(401)
-                .body("User not found");
+                .body("Invalid email or password");
     }
 
+    // Password mismatch
     if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
         return ResponseEntity
                 .status(401)
                 .body("Invalid email or password");
     }
 
+    // Success
     String token = jwtTokenProvider.generateToken(user);
     return ResponseEntity.ok(token);
 }
-
-
 }
