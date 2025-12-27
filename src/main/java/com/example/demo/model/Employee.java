@@ -44,6 +44,10 @@ public class Employee {
         return skills != null ? Arrays.asList(skills.split(",")) : Arrays.asList();
     }
     
+    public void setSkillsList(List<String> skillsList) {
+        this.skills = skillsList != null ? String.join(",", skillsList) : null;
+    }
+    
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
